@@ -7,8 +7,9 @@
  */
 
 import React, { Component } from 'react';
-import { Container, Content, Card, CardItem, Text, Body, Button, Icon, Item,Input,Header, Label } from 'native-base';
-import {StyleSheet} from 'react-native';
+import { Container, Content, Card, CardItem, Text, Body, Button, Icon, Item,Input,Header, Label, View } from 'native-base';
+import {StyleSheet, ActivityIndicator} from 'react-native';
+
 
 
 class Login extends Component {
@@ -16,11 +17,28 @@ class Login extends Component {
     super(props);
     this.state={usuario: '', pass:'' };
   }
+
+  state = {showIndicator: false}
+  onButtonPress = () =>{
+    this.setState({
+      showIndicator : true
+    }),this.props.navigation.navigate('Perfil' ,{pass: this.state.pass, usuario : this.state.pass})}
+
+
   render(){
-  const navegar = this.props.navigation;
-  return (
-    
-      <Container>
+  //const navegar = this.props.navigation;
+  
+
+    if(this.state.showIndicator){
+      return (
+        <View style= {misEstilos.content}>
+          <ActivityIndicator size="large" color="#36FF0E"></ActivityIndicator>
+        </View>
+      )
+    }else{
+      return(
+
+        <Container>
         <Content padder contentContainerStyle = {misEstilos.content}>          
               <Card>
                 <CardItem header bordered>
@@ -47,14 +65,22 @@ class Login extends Component {
                 <CardItem footer bordered>
                   <Button primary onPress={() => navegar.navigate('Registro')}><Text>Registrate</Text></Button>
                   <Button primary = {misEstilos.boton}
-                  onPress={()=>navegar.navigate('Perfil', {pass:this.state.pass, usuario :this.state.usuario})}><Text> Iniciar Sesion </Text></Button>
+                  onPress={this.onButtonPress}><Text> Iniciar Sesion </Text></Button>
                 </CardItem>
               </Card>
         </Content>
       </Container>
+
+      );
+      
+    }
+
+
+    
+      
     
    
-  );
+  
   } 
 };
 

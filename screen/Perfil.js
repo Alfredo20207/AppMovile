@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import {Container,Content,Card,CardItem, Text,Button} from 'native-base';
+//import ToggleSwitch from  'toggle-switch-react-native';
+import { Switch } from 'react-native-paper';
+
 
 
   class Perfil extends Component{
+      state = {
+          switchValue: false
+      };
       render(){
+
       const navegar = this.props.navigation;
        return(
            <>
            <Container>
                <Content>
                    <Card>
+                       
+                        <Text style={misEstilos.textStyle}>{this.state.switchValue? 'on' : 'off'}</Text>
+                        <Switch
+                            value={this.state.switchValue}
+                            onValueChange={(switchValue)=>this.setState({switchValue})}/>
+
+
                        <CardItem>
                             <Text style={misEstilos.textCenter}>Welcome</Text>
                        </CardItem>
@@ -56,6 +70,16 @@ import {Container,Content,Card,CardItem, Text,Button} from 'native-base';
           paddingVertical:35,
           backgroundColor:'#7ADB24'
       },
+
+      textStyle:
+      {
+          margin : 12,
+          fontSize: 25,
+          fontWeight: 'bold',
+          textAlign: 'center',
+          color : '#344953'
+      }, 
+      
   });
 
   export default Perfil;
