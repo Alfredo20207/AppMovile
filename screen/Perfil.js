@@ -37,6 +37,9 @@ import { Switch } from 'react-native-paper';
                        <CardItem>
                            <Button dark style={misEstilos.centrar} onPress={() =>
                         navegar.navigate('Login')}><Text>Exit</Text></Button>
+
+                        <Button primary onPress={() => navegar.navigate('Principal')}><Text>Principal</Text></Button>
+
                        </CardItem>
                    </Card>
                </Content>

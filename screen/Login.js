@@ -26,7 +26,7 @@ class Login extends Component {
 
 
   render(){
-  //const navegar = this.props.navigation;
+  const navegar = this.props.navigation;
   
 
     if(this.state.showIndicator){

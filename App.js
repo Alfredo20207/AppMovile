@@ -12,12 +12,18 @@ import { Container, Content, Card, CardItem, Text, Body, Button, Icon, Item, Lab
 import Login from './screen/Login';
 import Registro from './screen/Registro';
 import Perfil from './screen/Perfil';
+import Principal from './screen/Principal';
+import Principal2 from './screen/Principal2';
+import Search from './screen/Search';
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
 const Stack = createStackNavigator();
 
 const App: () => React$Node = () => {
+
+
+  
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
@@ -34,6 +40,16 @@ const App: () => React$Node = () => {
         <Stack.Screen
         name='Perfil'
         component = {Perfil}
+        />
+
+        <Stack.Screen
+        name='Principal'
+        component = {Principal}
+        />
+
+        <Stack.Screen
+        name ='Principal2'
+        component ={Principal2}
         />
       </Stack.Navigator>
     </NavigationContainer>
