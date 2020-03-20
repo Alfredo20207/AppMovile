@@ -29,10 +29,10 @@ import { Switch } from 'react-native-paper';
                             <Text style={misEstilos.textCenter}>Welcome</Text>
                        </CardItem>
                        <CardItem>
-                             <Text style={misEstilos.textCenter}> User:{this.props.route.params.usuario}</Text>
+                        <Text style={misEstilos.textCenter}> User:{/*{this.props.route.params.usuario}*/}</Text>
                        </CardItem>
                        <CardItem>
-                             <Text style={misEstilos.textCenter}> Password:{this.props.route.params.pass}</Text>
+                        <Text style={misEstilos.textCenter}> Password:{/*{this.props.route.params.pass}*/}</Text>
                        </CardItem>
                        <CardItem>
                            <Button dark style={misEstilos.centrar} onPress={() =>

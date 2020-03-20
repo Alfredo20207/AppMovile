@@ -8,23 +8,33 @@
 
 import React, { Component } from 'react';
 import { Container, Content, Card, CardItem, Text, Body, Button, Icon, Item,Input,Header, Label, View } from 'native-base';
-import {StyleSheet, ActivityIndicator} from 'react-native';
+import {ActivityIndicator, AppRegistry, TextInput, Alert, StyleSheet} from 'react-native';
 
 
 
-class Login extends Component {
+import api from '../data/api';
+
+class Login extends Component {  
   constructor(props){
-    super(props);
-    this.state={usuario: '', pass:'' };
+    super(props)
+    this.state={
+      username: '',
+      pass: ''
+    }
   }
 
-  state = {showIndicator: false}
-  onButtonPress = () =>{
-    this.setState({
-      showIndicator : true
-    }),this.props.navigation.navigate('Perfil' ,{pass: this.state.pass, usuario : this.state.pass})}
+  login = async() => {
+    let validarLog = await api.validarLog(this.state.username, this.state.pass);
 
+    if(validarLog.status == 1){
+      this.props.navigation.navigate('Principal');
+    }
+    else{
+      Alert.alert('Usuario o clave invalidos');
+    }
+  }
 
+  
   render(){
   const navegar = this.props.navigation;
   
@@ -49,23 +59,32 @@ class Login extends Component {
                     <Item lineLabel>  
                       <Icon type = 'FontAwesome' name = 'user'> </Icon>
                       <Input type="text" placeholder = 'Nombre de usuario'
-                      value= {this.state.usuario}
-                      onChangeText={(usuario) => this.setState({usuario})}
+                     // value= {this.state.usuario}
+                      onChangeText={(username=>this.setState({username}))}
                       />
                     </Item>
                     <Item lineLabel>
                       <Icon type = 'FontAwesome' name = 'lock'> </Icon>
                       <Input type="text" placeholder = 'Password'
-                              value={this.state.pass}
-                              onChangeText={(pass) => this.setState({pass})}
+                          //    value={this.state.pass}
+                              onChangeText={(pass)=>this.setState({pass})}
                               />                     
                     </Item>
                   </Body>
                 </CardItem>
                 <CardItem footer bordered>
-                  <Button primary onPress={() => navegar.navigate('Registro')}><Text>Registrate</Text></Button>
+                  <Button 
+                  primary 
+                  onPress = {() => {
+                    navegar.navigate('Registro', {
+                      titulo: 'Registro de usuario',
+                      nombre: 'Tibu',
+                    });
+                  }}>
+                    <Text>Registro</Text>
+                  </Button>
                   <Button primary = {misEstilos.boton}
-                  onPress={this.onButtonPress}><Text> Iniciar Sesion </Text></Button>
+                  onPress={() => {this.login()}}><Text> Iniciar Sesion </Text></Button>
                 </CardItem>
               </Card>
         </Content>
@@ -74,12 +93,6 @@ class Login extends Component {
       );
       
     }
-
-
-    
-      
-    
-   
   
   } 
 };

@@ -1,6 +1,6 @@
 <?php
 
-    include 'DBConfig.php';
+    include 'conexion.php';
     $con = mysqli_connect($HostName, $HostUser, $HostPass, $DatabaseName);
     $json = file_get_connects('php://input');
     $obj = json_decode($json, true);
@@ -12,7 +12,7 @@
 
     //checar que el correo no este registrado
 
-    $CheckSQL = "SELECT * FROM regis WHERE email = ' $email '";
+    $CheckSQL = "SELECT * FROM regis WHERE nombre = ' $name '";
 
     if(isset($check)){
         $EmailExistMDG = 'El correo ya existe, intente de nuevo :V';
@@ -20,7 +20,7 @@
 
         echo $EmailExistMDG;
     }
-    else{
+  /*  else{
         $Sql_Query = "INSERT INTO  regis(nombre, email, pass) values ('$name, $email, $password')";
 
         if(mysqli_query($con, $Sql_Query)){
@@ -31,6 +31,6 @@
         else {
             echo 'Intneta de nuevo bro';
         }
-    }
+    }*/
     mysqli_close($con);
 ?>

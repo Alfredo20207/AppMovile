@@ -14,6 +14,7 @@ import Registro from './screen/Registro';
 import Perfil from './screen/Perfil';
 import Principal from './screen/Principal';
 import Principal2 from './screen/Principal2';
+
 import Search from './screen/Search';
 import 'react-native-gesture-handler';
 import * as React from 'react';
@@ -51,6 +52,8 @@ const App: () => React$Node = () => {
         name ='Principal2'
         component ={Principal2}
         />
+
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
